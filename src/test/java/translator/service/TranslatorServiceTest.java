@@ -36,4 +36,5 @@ public class TranslatorServiceTest {
     TranslatedText translatedText = translatorService.translate("pt", "es", "Este tradutor funciona mal");
     assertEquals("Este traductor funciona mal", translatedText.getTranslation());
   }
+  
 }
