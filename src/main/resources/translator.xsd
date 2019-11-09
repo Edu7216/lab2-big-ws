@@ -6,7 +6,7 @@
             <xs:sequence>
                 <xs:element name="langFrom" type="xs:string"/>
                 <xs:element name="langTo" type="xs:string"/>
-                <xs:element name="text" type="xs:string"/>
+                <xs:element name="text" type="xs:base64Binary"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -16,7 +16,7 @@
             <xs:sequence>
                 <xs:element name="resultCode" type="xs:string"/>
                 <xs:element name="errorMsg" type="xs:string"/>
-                <xs:element name="translation" type="xs:string"/>
+                <xs:element name="translation" type="xs:base64Binary"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>

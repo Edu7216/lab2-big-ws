@@ -22,15 +22,21 @@ public class TranslatorEndpoint {
     this.translatorService = translatorService;
   }
 
+  /*
+   * Modified the main functionality, now it is possible to pass a file as text to traduce.
+   * Idea took from: https://github.com/spring-projects/spring-ws-samples/tree/master/mtom
+   */
   @PayloadRoot(namespace = "http://translator/web/ws/schema", localPart = "getTranslationRequest")
   @ResponsePayload
   public GetTranslationResponse translator(@RequestPayload GetTranslationRequest request) {
     GetTranslationResponse response = new GetTranslationResponse();
     try {
+      String received = new String(request.getText());
+      String parsed = received.substring(0, received.length()-1);
       TranslatedText translatedText = translatorService.translate(request.getLangFrom(), request.getLangTo(),
-              request.getText());
+              parsed);
       response.setResultCode("ok");
-      response.setTranslation(translatedText.getTranslation());
+      response.setTranslation(translatedText.getTranslation().getBytes());
     } catch (TranslatorException e) {
       response.setResultCode("error");
       response.setErrorMsg(e.getMessage());
